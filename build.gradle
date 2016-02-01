@@ -1,0 +1,75 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:0.5.4.RELEASE'
+    }
+}
+
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'war'
+
+archivesBaseName = ""
+
+
+war {
+    baseName = 'rundev'
+    version =  '1.0.0-SNAPSHOT'
+
+    archivesBaseName = baseName
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:2.0.1.RELEASE'
+    }
+}
+
+dependencies {
+
+    // Spring Boot
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    //in memory db
+    compile('org.hsqldb:hsqldb:2.3.1')
+
+    // Apache Tiles
+    compile "org.apache.tiles:tiles-core"
+    compile "org.apache.tiles:tiles-jsp"
+
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper:8.0.15")
+    compile("javax.servlet:jstl")
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
+
+task deploylocal(dependsOn: war) << {
+    println "Removing $System.env.TOMCAT_HOME/webapps/${archivesBaseName}"
+    delete "$System.env.TOMCAT_HOME/webapps/${archivesBaseName}", "$System.env.TOMCAT_HOME/webapps/${archivesBaseName}.war"
+    println "Copy from ${libsDir.getPath()} into $System.env.TOMCAT_HOME/webapps"
+    copy{
+        from libsDir
+        into "$System.env.TOMCAT_HOME/webapps/"
+        rename "(.*).war", "${archivesBaseName}.war"
+    }
+}

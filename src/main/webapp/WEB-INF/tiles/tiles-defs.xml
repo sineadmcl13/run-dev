@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+    <!-- TEMPLATES -->
+    <!-- It is unlikely you will need to add a new template -->
+    <definition name="template-public" template="/WEB-INF/tiles/templates/template-public.jsp">
+    </definition>
+   
+
+    <!-- CONTENT PAGES -->
+    <!-- the name is what should be returned from the @Controller GET/POST method. e.g. password/passwordReset -->
+    <!-- there is a catchall at the bottom for standard template-master pages -->
+
+	<definition name="*/*" extends="template-public">
+		<put-attribute name="contentBody" value="/WEB-INF/tiles/content/{1}/{2}.jsp" />
+	</definition>
+	
+</tiles-definitions>
+    
+    
