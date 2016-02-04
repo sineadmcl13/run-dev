@@ -20,9 +20,5 @@ public class CourseService implements ICourseService {
     public List<Courses> returnAllAvailableCourses() {
         return courseRepo.findAll();
     }
-
-    @Override
-    public void create(Courses courses) {
-        courseRepo.save(courses);
-    }
+    
 }

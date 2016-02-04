@@ -11,5 +11,4 @@ public interface ICourseService {
 
     List<Courses> returnAllAvailableCourses();
 
-    void create(Courses courses);
 }
