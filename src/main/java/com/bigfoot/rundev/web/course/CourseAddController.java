@@ -1,6 +1,7 @@
 package com.bigfoot.rundev.web.course;
 
 import com.bigfoot.rundev.service.ICourseService;
+import com.bigfoot.rundev.service.IInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +20,9 @@ public class CourseAddController {
     @Autowired
     private ICourseService courseService;
 
+    @Autowired
+    private IInstructorService instructorService;
+
     @ModelAttribute
     public void formBacking(ModelMap model) {
 
@@ -31,6 +35,7 @@ public class CourseAddController {
     public String onAddCourse(@ModelAttribute(CourseAddModel.KEY) CourseAddModel model){
 
         model.reset();
+        model.setInstructorList(instructorService.findAll());
         return COURSE_ADD;
     }
 

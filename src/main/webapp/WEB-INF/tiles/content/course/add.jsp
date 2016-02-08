@@ -31,8 +31,24 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="course.instructor" class="col-sm-2 control-label">Instructor</label>
+                <div class="col-sm-10">
+                    <form:select path="course.instructor" class="form-control" placeholder="Course INstructor">
+                        <form:option value="">None</form:option>
+                        <c:forEach items="${courseAddModel.instructorList}" var="instructor">
+                            <form:option value="${instructor.id}">${instructor.fullName}</form:option>
+                        </c:forEach>
+                    </form:select>
+                </div>
+            </div>
 
-            <button type="submit" class="btn btn-primary">Add New Course</button>
+
+            <div class="pull-right">
+                <button type="submit" class="btn btn-success">Add New Course</button>
+                <a href="<c:url value='/course/list'/>" class="btn btn-primary">Back to Course List</a>
+            </div>
+
         </form:form>
     </div>
 </div>

@@ -31,9 +31,9 @@
             </div>
             <div class="" id="bs-example-navbar-collapse-1">
                 <h2 class="navbar-text" style="color: #fff">
-                    RunDev <i class="fa fa-hand-spock-o fa-inverse"></i>
+                    RunDev <i class="fa fa-thumbs-o-up fa-inverse"></i>
                 </h2>
-                <p class="navbar-text" style="color: #fff">Run until you injure yourself. Then learn Java</p>
+                <p class="navbar-text" style="color: #fff">Went for a run. Now I'm messing with code</p>
             </div>
         </div>
     </nav>

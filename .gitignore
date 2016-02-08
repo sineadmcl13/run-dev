@@ -3,5 +3,4 @@
 *.iml
 build
 out
-gradlew.bat
 catalina.home_IS_UNDEFINED/logs
