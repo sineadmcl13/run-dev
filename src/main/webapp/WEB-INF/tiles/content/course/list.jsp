@@ -16,7 +16,7 @@
                 <th>Credits</th>
             </thead>
             <tbody>
-                <c:forEach items="${courseListModel.coursesList}" var="course">
+                <c:forEach items="${courseListModel.courseList}" var="course">
                     <tr>
                         <td>${course.id}</td>
                         <td>${course.name}</td>
@@ -27,12 +27,6 @@
                 </c:forEach>
             </tbody>
         </table>
-        <button type="button" class="btn btn-primary pull-right" data-toggle="popover" data-placement="bottom" title="New Feature Alert" data-content="You can implement this. Won't that fun?">Add New Course</button>
+        <a href="<c:url value='/course/add'/> " class="btn btn-primary pull-right">Add New Course</a>
     </div>
 </div>
-
-<script type="application/javascript">
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    })
-</script>

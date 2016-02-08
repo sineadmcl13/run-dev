@@ -41,26 +41,26 @@ dependencyManagement {
 dependencies {
 
     // Spring Boot
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     //in memory db
-    compile('org.hsqldb:hsqldb:2.3.1')
+    compile 'org.hsqldb:hsqldb:2.3.1'
 
     // Apache Tiles
-    compile "org.apache.tiles:tiles-core"
-    compile "org.apache.tiles:tiles-jsp"
+    compile 'org.apache.tiles:tiles-core'
+    compile 'org.apache.tiles:tiles-jsp'
 
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-    providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper:8.0.15")
-    compile("javax.servlet:jstl")
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper:8.0.15'
+    compile 'javax.servlet:jstl'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.9'
+    gradleVersion = '2.10'
 }
 
 task deploylocal(dependsOn: war) << {

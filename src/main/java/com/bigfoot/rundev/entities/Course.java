@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by sineadmclaughlin on 29/01/2016.
  */
 @Entity
-public class Courses {
+public class Course {
 
 
     @Id
@@ -16,7 +16,7 @@ public class Courses {
     private String level;
     private Long credits;
 
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=true)
     @JoinColumn(name="instructor",referencedColumnName="id")
     private Instructor instructor;
 

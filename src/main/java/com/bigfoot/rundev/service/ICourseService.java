@@ -1,6 +1,6 @@
 package com.bigfoot.rundev.service;
 
-import com.bigfoot.rundev.entities.Courses;
+import com.bigfoot.rundev.entities.Course;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface ICourseService {
 
-    List<Courses> returnAllAvailableCourses();
+    List<Course> returnAllAvailableCourses();
 
+    void save(Course course);
 }

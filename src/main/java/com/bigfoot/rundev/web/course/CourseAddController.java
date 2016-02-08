@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/course")
-public class CourseListController {
+public class CourseAddController {
 
-    private static String LIST = "course/list";
+    private static String COURSE_ADD = "course/add";
+    private static String COURSE_LIST_REDIRECT = "redirect:/course/list";
 
     @Autowired
     private ICourseService courseService;
@@ -21,17 +22,23 @@ public class CourseListController {
     @ModelAttribute
     public void formBacking(ModelMap model) {
 
-        CourseListModel instanceModel = new CourseListModel();
+        CourseAddModel instanceModel = new CourseAddModel();
         instanceModel.retrieveOrCreate(model);
 
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String onListDisplay(@ModelAttribute(CourseListModel.KEY) CourseListModel model){
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String onAddCourse(@ModelAttribute(CourseAddModel.KEY) CourseAddModel model){
 
         model.reset();
-        model.setCourseList(courseService.returnAllAvailableCourses());
-        return LIST;
+        return COURSE_ADD;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String onAddCoursePost(@ModelAttribute(CourseAddModel.KEY) CourseAddModel model){
+
+        courseService.save(model.getCourse());
+        return COURSE_LIST_REDIRECT;
     }
 
 
